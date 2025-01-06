@@ -29,7 +29,6 @@ public unsafe class Magpie {
     private static uint _vertexArray;
     private static uint _testShader;
 
-    //Vertex shaders are run on each vertex.
     private static readonly string _vertexShaderSource = @"
         #version 330 core //Using version GLSL version 3.3
         layout (location = 0) in vec4 vPos;
@@ -43,7 +42,6 @@ public unsafe class Magpie {
         }
         ";
 
-    //Fragment shaders are run on each fragment/pixel of the geometry.
     private static readonly string _fragmentShaderSource = @"
         #version 330 core
         out vec4 FragColor;
