@@ -1,0 +1,22 @@
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	
+    <!-- Copy all images to output folder -->
+    
+    <ItemGroup>
+        <None Update="Resources/Images/**/*.png">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+    <!-- Copy all effects to output folder -->
+
+    <ItemGroup>
+        <None Update="Resources/Shaders/**/*.frag">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="Resources/Shaders/**/*.vert">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+    
+</Project>
