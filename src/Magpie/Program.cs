@@ -1,7 +1,10 @@
-﻿using Magpie.Graphics;
+﻿using Magpie.Common;
+using Magpie.Graphics;
 using Magpie.Graphics.Shaders;
 using Silk.NET.OpenGL;
 using Silk.NET.GLFW;
+using System.Numerics;
+using static Magpie.Graphics.OpenGLApi;
 
 namespace Magpie;
 
@@ -20,6 +23,11 @@ public unsafe class Magpie {
     private const string _window_title = "magpie";
 
     public static GL GL;
+
+    public int BackingField {
+        get => 1;
+        
+    }
 
     public Glfw GLFW;
     
@@ -54,11 +62,10 @@ public unsafe class Magpie {
         GLFW.WindowHint(WindowHintOpenGlProfile.OpenGlProfile, OpenGlProfile.Core);
 
         _windowHandle = GLFW.CreateWindow(_screen_width, _screen_height, _window_title, null, null);
-        
-        // hello triangle
 
         _glfwContext = new(GLFW, _windowHandle);
         GLFW.MakeContextCurrent(_windowHandle);
+        OpenGLApi.InitializeOpenGL(_glContext);
         GL = GL.GetApi(_glContext);
 
         _basicShader = new ShaderProgram("Resources/Shaders/baseVertex.vert", "Resources/Shaders/baseFragment.frag", "BaseShader");
@@ -80,6 +87,8 @@ public unsafe class Magpie {
 
             GL.BindVertexArray(_vertexArray);
             ShaderProgram.PushShader(_basicShader.Id);
+            
+            _basicShader.SetUniform("modelViewProjection", mat);
 
             GL.DrawArrays(PrimitiveType.Triangles, 0, (uint)_vertices.Length);
             

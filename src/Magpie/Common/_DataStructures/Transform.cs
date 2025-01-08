@@ -1,5 +1,5 @@
-namespace Magpie.Common._DataStructures;
+using System.Numerics;
 
-public class Transform {
-    
-}
+namespace Magpie.Common;
+
+public struct Transform {}

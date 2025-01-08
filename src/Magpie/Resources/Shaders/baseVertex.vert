@@ -1,11 +1,12 @@
 #version 330 core
 
-layout (location = 0) in vec4 vPos;
+layout (location = 0) in vec3 vPos;
 
-out vec2 fUv;
+out vec2 fragUv;
+uniform mat4 modelViewProjection;
 
 void main()
 {
-    gl_Position = vec4(vPos.x, vPos.y, vPos.z, 1.0);
-    fUv = gl_Position.xy;
+    gl_Position = modelViewProjection * vec4(vPos, 1.0f);
+    fragUv = gl_Position.xy;
 }
