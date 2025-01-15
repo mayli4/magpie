@@ -1,6 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-    <Import Project="Assets.targets" />
     
     <PropertyGroup>
         <OutputType>Exe</OutputType>
