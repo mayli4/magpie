@@ -4,7 +4,7 @@ using static Magpie.Graphics.OpenGLApi;
 
 namespace Magpie.Graphics.Shaders;
 
-public sealed class ShaderProgram : IDisposable {
+public sealed partial class ShaderProgram : IDisposable {
     
     /// <summary> The "handle" of this shader program that OpenGL will use. </summary>
     public readonly uint Id;
@@ -92,21 +92,5 @@ public sealed class ShaderProgram : IDisposable {
 
         location = -1;
         return false;
-    }
-
-    public void SetUniform(string uniformName, float value) {
-        var location = OpenGL.GetUniformLocation(Id, uniformName);
-        if (location == -1) {
-            throw new Exception($"{uniformName} uniform not found in shader.");
-        }
-        OpenGL.Uniform1(location, value);
-    }
-    
-    public unsafe void SetUniform(string uniformName, Matrix4x4 value) {
-        var location = OpenGL.GetUniformLocation(Id, uniformName);
-        if (location == -1) {
-            throw new Exception($"{uniformName} uniform not found in shader.");
-        }
-        OpenGL.UniformMatrix4(location, 1, false, (float*) &value);
     }
 }
